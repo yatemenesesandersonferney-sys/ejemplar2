@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Agregar tarea</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form }}
+
+    <button>Guardar</button>
+</form>
+
+<h1>Mis tareas</h1>
+
+{% for tarea in tareas %}
+    <p>{{ tarea.titulo }}</p>
+    <p>{{ tarea.descripcion }}</p>
+    <a href="{% url 'eliminar_tarea' id=tarea.id %}">Eliminar</a>
+{% empty %}
+    <p>No hay tareas.</p>
+{% endfor %}
+
+</body>
+</html>
